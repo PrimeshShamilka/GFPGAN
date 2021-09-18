@@ -11,6 +11,7 @@ from gfpgan import GFPGANer
 
 def main():
     parser = argparse.ArgumentParser()
+#!python inference_gfpgan.py --upscale 2 --test_path inputs/upload --save_root results --model_path experiments/pretrained_models/GFPGANCleanv1-NoCE-C2.pth --bg_upsampler realesrgan
 
     parser.add_argument('--upscale', type=int, default=2)
     parser.add_argument('--arch', type=str, default='clean')
@@ -64,6 +65,7 @@ def main():
         basename, ext = os.path.splitext(img_name)
         input_img = cv2.imread(img_path, cv2.IMREAD_COLOR)
 
+        # input to model
         cropped_faces, restored_faces, restored_img = restorer.enhance(
             input_img, has_aligned=args.aligned, only_center_face=args.only_center_face, paste_back=args.paste_back)
 
